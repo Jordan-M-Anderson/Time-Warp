@@ -7,6 +7,7 @@ public class Arrow : MonoBehaviour
     public float speed;
     public GameObject endPoint;
     public GameManager gameManager;
+    public SpriteRenderer sprite;
 
     // Start is called before the first frame update
     void Start()
@@ -21,17 +22,35 @@ public class Arrow : MonoBehaviour
         {
             transform.position = Vector2.MoveTowards(transform.position, endPoint.transform.position, speed * Time.deltaTime);
         }
+
+        if (speed < 5)
+        {
+
+            sprite.color = Color.blue;
+
+        }
+        else if (speed > 5)
+        {
+
+            sprite.color = Color.red;
+
+        }
+        else {
+
+            sprite.color = Color.white;
+
+        }
     }
 
     private void OnMouseDown()
     {
         if (gameManager.isFast)
         {
-            speed = speed * 2;
+            speed = 10f;
         }
         else
         {
-            speed = speed / 2;
+            speed = 2.5f;
         }
     }
 
